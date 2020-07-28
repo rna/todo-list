@@ -2,11 +2,19 @@ import projectForm from './newprojectForm';
 import todoForm from './newTodoForm';
 import Project from './project';
 import Task from './handleTask';
+import selectProject from './selectProject';
+
+let projects = [];
+const defaultProject = new Project("Inbox");
+projects.push(defaultProject);
+
 const rendr = document.getElementById('container');
+
 rendr.appendChild(projectForm());
 rendr.appendChild(todoForm());
 
-let projects = [];
+rendr.appendChild(selectProject(projects));
+
 //create a new project
 const projectF = document.getElementById('projectform');
 projectF.addEventListener('submit', (e) => {
@@ -32,5 +40,6 @@ createtask.addEventListener('submit', (e) => {
   const tasky = new Task(title, description, dueDate, priority);
   project.todos.push(tasky);
   console.log(projects)
+  rendr.appendChild(selectProject(projects));
   e.preventDefault();
 })
