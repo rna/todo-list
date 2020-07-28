@@ -1,6 +1,6 @@
 let taskStore = [];
 
-function handleTask(){
+function HandleTask(){
     
   this.addTask = (obj) => {
     taskStore.push(obj);
@@ -26,12 +26,14 @@ function Task(title, description, dueDate, priority) {
   this.priority = priority
 }
 
-let task1 = new Task("Test Task1", "Description about Test", "Today","p1");
-let task2 = new Task("Test Task2", "Description about Test", "Today","p2");
+// let task1 = new Task("Test Task1", "Description about Test", "Today","p1");
+// let task2 = new Task("Test Task2", "Description about Test", "Today","p2");
 
-let newhandle = new handleTask();
+// let newhandle = new handleTask();
 
-newhandle.addTask(task1);
-newhandle.addTask(task2);
+// newhandle.addTask(task1);
+// newhandle.addTask(task2);
 
-console.log(taskStore);
+// console.log(taskStore);
+
+export default Task;
