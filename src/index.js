@@ -2,7 +2,7 @@ import projectForm from './newprojectForm';
 import todoForm from './newTodoForm';
 import Project from './project';
 import Task from './handleTask';
-import selectProject from './selectProject';
+import { projectList, listNewProject } from './projectList';
 
 let projects = [];
 const defaultProject = new Project("Inbox");
@@ -13,17 +13,16 @@ const rendr = document.getElementById('container');
 rendr.appendChild(projectForm());
 rendr.appendChild(todoForm());
 
-rendr.appendChild(selectProject(projects));
+rendr.appendChild(projectList(projects));
 
 //create a new project
 const projectF = document.getElementById('projectform');
 projectF.addEventListener('submit', (e) => {
   const name = document.getElementById('name').value;
-
   const newProject = new Project(name);
   projects.push(newProject);
   console.log(projects);
-
+  rendr.appendChild(listNewProject(projects));
   e.preventDefault();
 });
 
@@ -40,6 +39,7 @@ createtask.addEventListener('submit', (e) => {
   const tasky = new Task(title, description, dueDate, priority);
   project.todos.push(tasky);
   console.log(projects)
-  rendr.appendChild(selectProject(projects));
+  
+  
   e.preventDefault();
 })
