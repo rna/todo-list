@@ -7,14 +7,34 @@ import { projectList, listNewProject } from './projectList';
 let projects = [];
 const defaultProject = new Project("Inbox");
 projects.push(defaultProject);
-
 const rendr = document.getElementById('container');
 const radioForm = document.createElement('form');
+radioForm.id = 'radioForm';
 
 rendr.appendChild(projectForm());
 rendr.appendChild(todoForm());
 
 rendr.appendChild(projectList(radioForm, projects));
+
+document.getElementById('Inbox').checked = true;
+
+
+function getRadioVal(form, name) {
+  var val;
+
+  var radios = form.elements[name];
+  console.log(radios)
+  var len = radios.length;
+  for (var i = 0; i < len; i++) {
+    if (radios[i].checked == true) {
+      val = radios[i].value;
+
+      break;
+    }
+  }
+
+  return val;
+}
 
 //create a new project
 const projectF = document.getElementById('projectform');
@@ -35,7 +55,9 @@ createtask.addEventListener('submit', (e) => {
   const dueDate = document.getElementById('date').value;
   const priority = document.getElementById('priority').value;
   //get a project
-  const project = projects[0];
+  x = document.getElementById('radioForm');
+  const project = getRadioVal(x, 'project');
+  
 
   const tasky = new Task(title, description, dueDate, priority);
   project.todos.push(tasky);
@@ -44,3 +66,6 @@ createtask.addEventListener('submit', (e) => {
   
   e.preventDefault();
 })
+let r = document.getElementById('radioForm');
+var valy = getRadioVal(r, 'project' );
+console.log(valy);
