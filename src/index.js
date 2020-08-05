@@ -9,11 +9,12 @@ const defaultProject = new Project("Inbox");
 projects.push(defaultProject);
 
 const rendr = document.getElementById('container');
+const radioForm = document.createElement('form');
 
 rendr.appendChild(projectForm());
 rendr.appendChild(todoForm());
 
-rendr.appendChild(projectList(projects));
+rendr.appendChild(projectList(radioForm, projects));
 
 //create a new project
 const projectF = document.getElementById('projectform');
@@ -22,7 +23,7 @@ projectF.addEventListener('submit', (e) => {
   const newProject = new Project(name);
   projects.push(newProject);
   console.log(projects);
-  rendr.appendChild(listNewProject(projects));
+  rendr.appendChild(listNewProject(radioForm, projects));
   e.preventDefault();
 });
 

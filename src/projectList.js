@@ -2,7 +2,7 @@ const addRadioButton = (eleForm, element) => {
   let radioButton = document.createElement('input')
     radioButton.type = "radio";
     radioButton.id = element;
-    radioButton.name = element;
+    radioButton.name = "project";
     radioButton.value = element;
     
     let radioLabel = document.createElement('label');
@@ -14,10 +14,8 @@ const addRadioButton = (eleForm, element) => {
 }
 
 
-const projectList = (projects) => {
+const projectList = (radioForm, projects) => {
   
-  const radioForm = document.createElement('form');
-
   projects.forEach(element => {  
     addRadioButton(radioForm,element.name);
   });
@@ -25,9 +23,7 @@ const projectList = (projects) => {
   return radioForm;
 }
 
-const listNewProject = (projects) => {
-  
-  const radioForm = document.createElement('form');
+const listNewProject = (radioForm, projects) => {
   
   addRadioButton(radioForm,projects[projects.length-1].name);
 
