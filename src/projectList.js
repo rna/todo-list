@@ -4,7 +4,10 @@ const addRadioButton = (eleForm, element) => {
     radioButton.id = element;
     radioButton.name = "project";
     radioButton.value = element;
-    
+    if (radioButton.id == "Inbox") {
+      radioButton.checked = true;
+    }
+
     let radioLabel = document.createElement('label');
     radioLabel.for = element;
     radioLabel.innerHTML = element;

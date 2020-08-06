@@ -9,11 +9,11 @@ const defaultProject = new Project("Inbox");
 projects.push(defaultProject);
 
 const rendr = document.getElementById('container');
-const radioForm = document.createElement('form');
 
 rendr.appendChild(projectForm());
 rendr.appendChild(todoForm());
 
+const radioForm = document.getElementById('doForm');
 rendr.appendChild(projectList(radioForm, projects));
 
 //create a new project
@@ -34,13 +34,12 @@ createtask.addEventListener('submit', (e) => {
   const description = document.getElementById('description').value;
   const dueDate = document.getElementById('date').value;
   const priority = document.getElementById('priority').value;
-  //get a project
-  const project = projects[0];
 
+  //get a project
+  const projectName = document.querySelector('input[name="project"]:checked').value;
+  const project = projects.find(e => e.name == projectName);
   const tasky = new Task(title, description, dueDate, priority);
   project.todos.push(tasky);
-  console.log(projects)
-  
-  
+  console.log(projects);
   e.preventDefault();
 })
