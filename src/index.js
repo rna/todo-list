@@ -1,8 +1,6 @@
-import projectForm from './newprojectForm';
-import todoForm from './newTodoForm';
 import Project from './project';
 import Task from './handleTask';
-import { projectList, listNewProject } from './projectList';
+import { todoForm, projectForm, displayProjects, listNewProject } from './dom';
 
 let projects = [];
 const defaultProject = new Project("Inbox");
@@ -14,7 +12,7 @@ rendr.appendChild(projectForm());
 rendr.appendChild(todoForm());
 
 const radioForm = document.getElementById('doForm');
-rendr.appendChild(projectList(radioForm, projects));
+rendr.appendChild(displayProjects(radioForm, projects));
 
 //create a new project
 const projectF = document.getElementById('projectform');
