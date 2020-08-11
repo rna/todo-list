@@ -1,6 +1,7 @@
 import Project from './project';
 import Task from './handleTask';
 import { todoForm, projectForm, displayProjects, listNewProject, displayNewTask } from './dom';
+import './style.css';
 
 let projects = [];
 const defaultProject = new Project("Inbox");
