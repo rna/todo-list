@@ -92,4 +92,18 @@ const listNewProject = (radioForm, projects) => {
   return radioForm;
 }
 
-export {todoForm, projectForm, displayProjects, listNewProject};
+const displayTasks = () => {
+  
+}
+
+const displayNewTask = (task) => {
+  const list = document.createElement("ul");
+  Object.values(task).forEach(ele => {
+    const item = document.createElement("li");
+    item.appendChild(document.createTextNode(ele));
+    list.appendChild(item);
+  })
+  return list;
+}
+
+export {todoForm, projectForm, displayProjects, listNewProject, displayNewTask};

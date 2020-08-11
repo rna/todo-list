@@ -1,6 +1,6 @@
 import Project from './project';
 import Task from './handleTask';
-import { todoForm, projectForm, displayProjects, listNewProject } from './dom';
+import { todoForm, projectForm, displayProjects, listNewProject, displayNewTask } from './dom';
 
 let projects = [];
 const defaultProject = new Project("Inbox");
@@ -20,7 +20,6 @@ projectF.addEventListener('submit', (e) => {
   const name = document.getElementById('name').value;
   const newProject = new Project(name);
   projects.push(newProject);
-  console.log(projects);
   rendr.appendChild(listNewProject(radioForm, projects));
   e.preventDefault();
 });
@@ -38,6 +37,7 @@ createtask.addEventListener('submit', (e) => {
   const project = projects.find(e => e.name == projectName);
   const tasky = new Task(title, description, dueDate, priority);
   project.todos.push(tasky);
-  console.log(projects);
+  rendr.appendChild(displayNewTask(project.todos[0]));
+  console.log(project.todos[0]);
   e.preventDefault();
 })
