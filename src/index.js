@@ -1,6 +1,6 @@
 import Project from './project';
 import Task from './handleTask';
-import { todoForm, projectForm, displayProjects, listNewProject, displayNewTask } from './dom';
+import { todoForm, projectForm, displayProjects, listNewProject, displayNewTask, createDivs, sideProjects } from './dom';
 import './style.css';
 
 let projects = [];
@@ -9,11 +9,15 @@ projects.push(defaultProject);
 
 const rendr = document.getElementById('container');
 
+rendr.appendChild(createDivs());
 rendr.appendChild(projectForm());
 rendr.appendChild(todoForm());
 
+const side = document.getElementById('sidebar');
+
 const radioForm = document.getElementById('doForm');
 rendr.appendChild(displayProjects(radioForm, projects));
+side.appendChild(sideProjects(projects));
 
 //create a new project
 const projectF = document.getElementById('projectform');

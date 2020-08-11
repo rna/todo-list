@@ -1,0 +1,18 @@
+.navbar {
+  background-color: brown;
+  height: 25px;
+}
+
+.innerCont {
+  display: flex;
+}
+
+.sidebar {
+  background-color: burlywood;
+  width: 25%;
+}
+
+.mainDiv {
+  background-color: cadetblue;
+  width: 75%;
+}

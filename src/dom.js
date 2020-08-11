@@ -85,6 +85,17 @@ const displayProjects = (radioForm, projects) => {
   return radioForm;
 }
 
+const sideProjects = (projects) => {
+  const listing = document.createElement('ul');
+  projects.forEach(element => {
+    const item = document.createElement('li');
+    item.innerHTML = element;
+    listing.appendChild(item);
+  })
+
+  return listing;
+}
+
 const listNewProject = (radioForm, projects) => {
   
   addRadioButton(radioForm,projects[projects.length-1].name);
@@ -106,4 +117,26 @@ const displayNewTask = (task) => {
   return list;
 }
 
-export {todoForm, projectForm, displayProjects, listNewProject, displayNewTask};
+const createDivs = () => {
+  const navi = document.createElement('nav');
+  const innerCont = document.createElement('div');
+  const sidebar = document.createElement('div');
+  const mainDiv = document.createElement('div');
+  const allDivs =document.createElement('div');
+  navi.className = 'navbar';
+  navi.innerHTML = 'Todo List'
+  sidebar.className = 'sidebar';
+  sidebar.id = 'sidebar';
+  mainDiv.className = 'mainDiv'
+  innerCont.className = 'innerCont';
+  sidebar.innerHTML = 'fhjhhjhki'
+  mainDiv.innerHTML = 'qwertyui'
+  allDivs.appendChild(navi);
+  innerCont.appendChild(sidebar);
+  innerCont.appendChild(mainDiv);
+  allDivs.appendChild(innerCont)
+
+  return allDivs;
+}
+
+export {todoForm, projectForm, displayProjects, listNewProject, displayNewTask, createDivs, sideProjects};
