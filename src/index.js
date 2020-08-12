@@ -10,13 +10,14 @@ projects.push(defaultProject);
 const rendr = document.getElementById('container');
 
 rendr.appendChild(createDivs());
-rendr.appendChild(projectForm());
 rendr.appendChild(todoForm());
 
 const side = document.getElementById('sidebar');
+const mainDiv = document.getElementById('mainDiv');
 
 const radioForm = document.getElementById('doForm');
-rendr.appendChild(displayProjects(radioForm, projects));
+mainDiv.appendChild(projectForm());
+mainDiv.appendChild(displayProjects(radioForm, projects));
 side.appendChild(sideProjects(projects));
 
 //create a new project

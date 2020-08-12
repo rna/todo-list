@@ -89,7 +89,7 @@ const sideProjects = (projects) => {
   const listing = document.createElement('ul');
   projects.forEach(element => {
     const item = document.createElement('li');
-    item.innerHTML = element;
+    item.innerHTML = element.name;
     listing.appendChild(item);
   })
 
@@ -127,10 +127,9 @@ const createDivs = () => {
   navi.innerHTML = 'Todo List'
   sidebar.className = 'sidebar';
   sidebar.id = 'sidebar';
-  mainDiv.className = 'mainDiv'
+  mainDiv.className = 'mainDiv';
+  mainDiv.id = 'mainDiv';
   innerCont.className = 'innerCont';
-  sidebar.innerHTML = 'fhjhhjhki'
-  mainDiv.innerHTML = 'qwertyui'
   allDivs.appendChild(navi);
   innerCont.appendChild(sidebar);
   innerCont.appendChild(mainDiv);

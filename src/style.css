@@ -1,6 +1,10 @@
+body {
+  margin: 0;
+}
+
 .navbar {
   background-color: brown;
-  height: 25px;
+  height: 35px;
 }
 
 .innerCont {
@@ -9,10 +13,11 @@
 
 .sidebar {
   background-color: burlywood;
-  width: 25%;
+  width: 20%;
+  height: 100vh;
 }
 
 .mainDiv {
   background-color: cadetblue;
-  width: 75%;
+  width: 80%;
 }
