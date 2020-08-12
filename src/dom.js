@@ -103,18 +103,18 @@ const listNewProject = (radioForm, projects) => {
   return radioForm;
 }
 
-const displayTasks = () => {
-  
+const displayTasks = (arr) => {
+  const list = document.createElement("ul");
+  arr.forEach(task => displayNewTask(list, task));
+  return list;
 }
 
-const displayNewTask = (task) => {
-  const list = document.createElement("ul");
+const displayNewTask = (list,task) => {
   Object.values(task).forEach(ele => {
     const item = document.createElement("li");
     item.appendChild(document.createTextNode(ele));
     list.appendChild(item);
   })
-  return list;
 }
 
 const createDivs = () => {
@@ -138,4 +138,4 @@ const createDivs = () => {
   return allDivs;
 }
 
-export {todoForm, projectForm, displayProjects, listNewProject, displayNewTask, createDivs, sideProjects};
+export {todoForm, projectForm, displayProjects, listNewProject, displayTasks, createDivs, sideProjects};

@@ -1,11 +1,14 @@
 import Project from './project';
 import Task from './handleTask';
-import { todoForm, projectForm, displayProjects, listNewProject, displayNewTask, createDivs, sideProjects } from './dom';
+import { todoForm, projectForm, displayProjects, listNewProject, displayTasks, createDivs, sideProjects } from './dom';
+import {saveToBrowser,readFromBrowser} from './browserStorage';
 import './style.css';
 
-let projects = [];
-const defaultProject = new Project("Inbox");
-projects.push(defaultProject);
+let projects = readFromBrowser() || [] ;
+if(projects == []){
+ const defaultProject = new Project("Inbox");
+ projects.push(defaultProject);
+}
 
 const rendr = document.getElementById('container');
 
@@ -19,6 +22,7 @@ const radioForm = document.getElementById('doForm');
 mainDiv.appendChild(projectForm());
 mainDiv.appendChild(displayProjects(radioForm, projects));
 side.appendChild(sideProjects(projects));
+mainDiv.appendChild(displayTasks(projects[0].todos));
 
 //create a new project
 const projectF = document.getElementById('projectform');
@@ -27,6 +31,7 @@ projectF.addEventListener('submit', (e) => {
   const newProject = new Project(name);
   projects.push(newProject);
   rendr.appendChild(listNewProject(radioForm, projects));
+  saveToBrowser(projects);
   e.preventDefault();
 });
 
@@ -43,7 +48,9 @@ createtask.addEventListener('submit', (e) => {
   const project = projects.find(e => e.name == projectName);
   const tasky = new Task(title, description, dueDate, priority);
   project.todos.push(tasky);
-  rendr.appendChild(displayNewTask(project.todos[0]));
-  console.log(project.todos[0]);
+  let list = rendr.childNodes[-1];  
+  list.replaceChild(displayTasks(project.todos),list.childNodes[-1]);
+  saveToBrowser(projects);
+  console.log(projects);
   e.preventDefault();
 })
