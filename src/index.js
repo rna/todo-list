@@ -1,36 +1,38 @@
 import Project from './project';
 import Task from './handleTask';
-import { todoForm, projectForm, displayProjects, listNewProject, displayTasks, createDivs, sideProjects } from './dom';
+import { todoForm, listNewTask, projectForm, displayProjects, listNewProject, displayTasks, createDivs, sideProjects } from './dom';
 import {saveToBrowser,readFromBrowser} from './browserStorage';
 import './style.css';
 
+
+const mainContainer = document.getElementById('container');
+mainContainer.appendChild(createDivs());
+
 let projects = readFromBrowser() || [] ;
-if(projects == []){
+if(projects.length == 0){
  const defaultProject = new Project("Inbox");
  projects.push(defaultProject);
+ saveToBrowser(projects);
 }
 
-const rendr = document.getElementById('container');
-
-rendr.appendChild(createDivs());
-rendr.appendChild(todoForm());
-
-const side = document.getElementById('sidebar');
+const sidebar = document.getElementById('sidebar');
 const mainDiv = document.getElementById('mainDiv');
 
-const radioForm = document.getElementById('doForm');
 mainDiv.appendChild(projectForm());
+mainDiv.appendChild(todoForm());
+
+const radioForm = document.getElementById('doForm');
 mainDiv.appendChild(displayProjects(radioForm, projects));
-side.appendChild(sideProjects(projects));
-mainDiv.appendChild(displayTasks(projects[0].todos));
+sidebar.appendChild(sideProjects(projects));
+projects[0].length==0 ? null : mainDiv.appendChild(displayTasks(projects[0].todos));
 
 //create a new project
-const projectF = document.getElementById('projectform');
-projectF.addEventListener('submit', (e) => {
+const newProjectForm = document.getElementById('projectform');
+newProjectForm.addEventListener('submit', (e) => {
   const name = document.getElementById('name').value;
   const newProject = new Project(name);
   projects.push(newProject);
-  rendr.appendChild(listNewProject(radioForm, projects));
+  mainDiv.appendChild(listNewProject(radioForm, projects));
   saveToBrowser(projects);
   e.preventDefault();
 });
@@ -48,8 +50,7 @@ createtask.addEventListener('submit', (e) => {
   const project = projects.find(e => e.name == projectName);
   const tasky = new Task(title, description, dueDate, priority);
   project.todos.push(tasky);
-  let list = rendr.childNodes[-1];  
-  list.replaceChild(displayTasks(project.todos),list.childNodes[-1]);
+  mainDiv.appendChild(listNewTask(tasky));
   saveToBrowser(projects);
   console.log(projects);
   e.preventDefault();

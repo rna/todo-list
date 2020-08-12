@@ -104,17 +104,25 @@ const listNewProject = (radioForm, projects) => {
 }
 
 const displayTasks = (arr) => {
-  const list = document.createElement("ul");
-  arr.forEach(task => displayNewTask(list, task));
-  return list;
+  const uList = document.createElement("ul");
+  arr.forEach(task => {
+    const list = document.createElement("li");
+    projectTasks(list, task);
+    uList.appendChild(list);
+  });
+  return uList;
 }
 
-const displayNewTask = (list,task) => {
+const projectTasks = (list,task) => {
   Object.values(task).forEach(ele => {
-    const item = document.createElement("li");
-    item.appendChild(document.createTextNode(ele));
-    list.appendChild(item);
+    list.appendChild(document.createTextNode(`${ele} `));
   })
+}
+
+const listNewTask = (task) => {
+  const list = document.createElement("li");
+  projectTasks(list, task);
+  return list;
 }
 
 const createDivs = () => {
@@ -138,4 +146,4 @@ const createDivs = () => {
   return allDivs;
 }
 
-export {todoForm, projectForm, displayProjects, listNewProject, displayTasks, createDivs, sideProjects};
+export {todoForm, projectForm, displayProjects, listNewProject, displayTasks, createDivs, sideProjects, listNewTask};

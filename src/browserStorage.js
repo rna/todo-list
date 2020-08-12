@@ -3,7 +3,12 @@ const saveToBrowser = (projects) => {
 }
 
 const readFromBrowser = () => {
-  return JSON.parse(localStorage.getItem("projects"));
+  let localObj = localStorage.getItem("projects");
+  if (localObj === null) {
+    return null;
+  } else {
+    return JSON.parse(localObj);
+  }
 }
 
 const updateBrowser = () => {
