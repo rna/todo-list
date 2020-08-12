@@ -52,6 +52,14 @@ createtask.addEventListener('submit', (e) => {
   project.todos.push(tasky);
   mainDiv.appendChild(listNewTask(tasky));
   saveToBrowser(projects);
-  console.log(projects);
   e.preventDefault();
 })
+
+const showTasks = document.getElementById('taskDisplay');
+
+projects.forEach(element => {
+  document.getElementById(element.name).addEventListener('click',()=>{
+    showTasks.innerHTML = "";
+    showTasks.appendChild(displayTasks(element.todos))
+  })
+});

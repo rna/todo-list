@@ -90,6 +90,7 @@ const sideProjects = (projects) => {
   projects.forEach(element => {
     const item = document.createElement('li');
     item.innerHTML = element.name;
+    item.id = element.name;
     listing.appendChild(item);
   })
 
@@ -105,6 +106,7 @@ const listNewProject = (radioForm, projects) => {
 
 const displayTasks = (arr) => {
   const uList = document.createElement("ul");
+  uList.id = "taskDisplay";
   arr.forEach(task => {
     const list = document.createElement("li");
     projectTasks(list, task);
