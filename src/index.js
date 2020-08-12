@@ -50,7 +50,7 @@ createtask.addEventListener('submit', (e) => {
   const project = projects.find(e => e.name == projectName);
   const tasky = new Task(title, description, dueDate, priority);
   project.todos.push(tasky);
-  mainDiv.appendChild(listNewTask(tasky));
+  showTasks.appendChild(listNewTask(tasky));
   saveToBrowser(projects);
   e.preventDefault();
 })

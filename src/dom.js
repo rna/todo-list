@@ -105,8 +105,7 @@ const listNewProject = (radioForm, projects) => {
 }
 
 const displayTasks = (arr) => {
-  const uList = document.createElement("ul");
-  uList.id = "taskDisplay";
+  const uList = document.getElementById('taskDisplay')
   arr.forEach(task => {
     const list = document.createElement("li");
     projectTasks(list, task);
@@ -122,9 +121,10 @@ const projectTasks = (list,task) => {
 }
 
 const listNewTask = (task) => {
+  const uList = document.getElementById('taskDisplay')
   const list = document.createElement("li");
   projectTasks(list, task);
-  return list;
+  return uList.appendChild(list);
 }
 
 const createDivs = () => {
@@ -133,6 +133,9 @@ const createDivs = () => {
   const sidebar = document.createElement('div');
   const mainDiv = document.createElement('div');
   const allDivs =document.createElement('div');
+  const taskDiv = document.createElement('div');
+  const taskList = document.createElement('ul');
+
   navi.className = 'navbar';
   navi.innerHTML = 'Todo List'
   sidebar.className = 'sidebar';
@@ -140,10 +143,15 @@ const createDivs = () => {
   mainDiv.className = 'mainDiv';
   mainDiv.id = 'mainDiv';
   innerCont.className = 'innerCont';
+  
+  taskList.id = 'taskDisplay';
+  taskDiv.appendChild(taskList);
+  
   allDivs.appendChild(navi);
   innerCont.appendChild(sidebar);
   innerCont.appendChild(mainDiv);
-  allDivs.appendChild(innerCont)
+  mainDiv.appendChild(taskDiv);
+  allDivs.appendChild(innerCont);
 
   return allDivs;
 }
