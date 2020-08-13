@@ -1,12 +1,10 @@
-import Project from './project';
-import Task from './handleTask';
-import { todoForm, listNewTask, projectForm, displayProjects, listNewProject, displayTasks, createDivs, sideProjects } from './dom';
+import {Project, Task} from './prototypes';
+import DOM from './dom';
 import {saveToBrowser,readFromBrowser} from './browserStorage';
 import './style.css';
 
-
 const mainContainer = document.getElementById('container');
-mainContainer.appendChild(createDivs());
+mainContainer.appendChild(DOM.createDivs());
 
 let projects = readFromBrowser() || [] ;
 if(projects.length == 0){
@@ -17,14 +15,17 @@ if(projects.length == 0){
 
 const sidebar = document.getElementById('sidebar');
 const mainDiv = document.getElementById('mainDiv');
+const showTasks = document.getElementById('taskDisplay');
 
-mainDiv.appendChild(projectForm());
-mainDiv.appendChild(todoForm());
+mainDiv.appendChild(DOM.projectForm());
+mainDiv.appendChild(DOM.todoForm());
+
 
 const radioForm = document.getElementById('doForm');
-mainDiv.appendChild(displayProjects(radioForm, projects));
-sidebar.appendChild(sideProjects(projects));
-projects[0].length==0 ? null : mainDiv.appendChild(displayTasks(projects[0].todos));
+mainDiv.appendChild(DOM.displayProjects(radioForm, projects));
+projects[0].length==0 ? null : mainDiv.appendChild(DOM.displayTasks(projects[0].todos));
+sidebar.appendChild(DOM.sideProjects(projects));
+
 
 //create a new project
 const newProjectForm = document.getElementById('projectform');
@@ -32,7 +33,7 @@ newProjectForm.addEventListener('submit', (e) => {
   const name = document.getElementById('name').value;
   const newProject = new Project(name);
   projects.push(newProject);
-  mainDiv.appendChild(listNewProject(radioForm, projects));
+  mainDiv.appendChild(DOM.listNewProject(radioForm, projects));
   saveToBrowser(projects);
   e.preventDefault();
 });
@@ -50,16 +51,14 @@ createtask.addEventListener('submit', (e) => {
   const project = projects.find(e => e.name == projectName);
   const tasky = new Task(title, description, dueDate, priority);
   project.todos.push(tasky);
-  showTasks.appendChild(listNewTask(tasky));
+  showTasks.appendChild(DOM.listNewTask(tasky));
   saveToBrowser(projects);
   e.preventDefault();
 })
 
-const showTasks = document.getElementById('taskDisplay');
-
 projects.forEach(element => {
   document.getElementById(element.name).addEventListener('click',()=>{
     showTasks.innerHTML = "";
-    showTasks.appendChild(displayTasks(element.todos))
+    showTasks.appendChild(DOM.displayTasks(element.todos))
   })
 });

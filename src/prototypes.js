@@ -1,6 +1,5 @@
-let taskStore = [];
 
-function HandleTask(){
+function HandleTask(taskStore){
     
   this.addTask = (obj) => {
     taskStore.push(obj);
@@ -26,4 +25,9 @@ function Task(title, description, dueDate, priority) {
   this.priority = priority
 }
 
-export default Task;
+function Project(name) {
+  this.name = name
+  this.todos = [];
+}
+
+export {Project, Task}
