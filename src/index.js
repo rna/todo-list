@@ -20,7 +20,6 @@ const showTasks = document.getElementById('taskDisplay');
 mainDiv.appendChild(DOM.projectForm());
 mainDiv.appendChild(DOM.todoForm());
 
-
 const radioForm = document.getElementById('doForm');
 mainDiv.appendChild(DOM.displayProjects(radioForm, projects));
 projects[0].length==0 ? null : mainDiv.appendChild(DOM.displayTasks(projects[0].todos));

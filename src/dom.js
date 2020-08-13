@@ -144,15 +144,16 @@ const DOM = (function(){
     mainDiv.className = 'mainDiv';
     mainDiv.id = 'mainDiv';
     innerCont.className = 'innerCont';
-    
+    taskDiv.id = 'taskDiv';
     taskList.id = 'taskDisplay';
-    taskDiv.appendChild(taskList);
+    
     
     allDivs.appendChild(navi);
+    allDivs.appendChild(innerCont);
     innerCont.appendChild(sidebar);
     innerCont.appendChild(mainDiv);
     mainDiv.appendChild(taskDiv);
-    allDivs.appendChild(innerCont);
+    taskDiv.appendChild(taskList);
   
     return allDivs;
   }
