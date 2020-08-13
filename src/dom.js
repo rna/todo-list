@@ -105,14 +105,14 @@ const DOM = (function(){
     return radioForm;
   }
   
-  const displayTasks = (arr) => {
-    const uList = document.getElementById('taskDisplay')
+  const displayTasks = (node, arr) => {
+
     arr.forEach(task => {
       const list = document.createElement("li");
       projectTasks(list, task);
-      uList.appendChild(list);
+      node.appendChild(list);
     });
-    return uList;
+    return node;
   }
   
   const projectTasks = (list,task) => {
