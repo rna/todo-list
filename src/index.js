@@ -22,9 +22,8 @@ mainDiv.appendChild(DOM.todoForm());
 
 const radioForm = document.getElementById('doForm');
 mainDiv.appendChild(DOM.displayProjects(radioForm, projects));
-projects[0].length==0 ? null : mainDiv.appendChild(DOM.displayTasks(projects[0].todos));
+projects[0].length==0 ? null : DOM.displayTasks(projects[0].todos);
 sidebar.appendChild(DOM.sideProjects(projects));
-
 
 //create a new project
 const newProjectForm = document.getElementById('projectform');
