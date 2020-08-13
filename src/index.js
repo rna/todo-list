@@ -33,6 +33,8 @@ newProjectForm.addEventListener('submit', (e) => {
   const newProject = new Project(name);
   projects.push(newProject);
   mainDiv.appendChild(DOM.listNewProject(radioForm, projects));
+  const sideProjectList = document.getElementById('sideProjectList');
+  DOM.newSideProject(sideProjectList, newProject);
   saveToBrowser(projects);
   e.preventDefault();
 });

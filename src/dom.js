@@ -88,14 +88,23 @@ const DOM = (function(){
   
   const sideProjects = (projects) => {
     const listing = document.createElement('ul');
+    listing.id = 'sideProjectList';
     projects.forEach(element => {
-      const item = document.createElement('li');
-      item.innerHTML = element.name;
-      item.id = element.name;
-      listing.appendChild(item);
+      newSideProject(listing,element);
     })
-  
     return listing;
+  }
+
+  const newSideProject = (node, project) => {
+    const showTasks = document.getElementById('taskDisplay');
+    const item = document.createElement('li');
+      item.innerHTML = project.name;
+      item.id = project.name;
+      node.appendChild(item)
+      document.getElementById(project.name).addEventListener('click',()=>{
+        showTasks.innerHTML = "";
+        displayTasks(showTasks,project.todos)
+      })
   }
   
   const listNewProject = (radioForm, projects) => {
@@ -166,7 +175,8 @@ const DOM = (function(){
     listNewProject,
     displayTasks,
     createDivs,
-    sideProjects
+    sideProjects,
+    newSideProject
   }
 })();
 
