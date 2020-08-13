@@ -145,6 +145,8 @@ const DOM = (function(){
     const allDivs =document.createElement('div');
     const taskDiv = document.createElement('div');
     const taskList = document.createElement('ul');
+    const projectButtonCont = document.createElement('div');
+    const addProjectBtn = document.createElement('button');
   
     navi.className = 'navbar';
     navi.innerHTML = 'Todo List'
@@ -155,12 +157,17 @@ const DOM = (function(){
     innerCont.className = 'innerCont';
     taskDiv.id = 'taskDiv';
     taskList.id = 'taskDisplay';
+    projectButtonCont.id = 'projectBtnCont';
+    addProjectBtn.id = 'addProjectBtn';
     
     
     allDivs.appendChild(navi);
     allDivs.appendChild(innerCont);
     innerCont.appendChild(sidebar);
     innerCont.appendChild(mainDiv);
+    addProjectBtn.innerHTML = 'Add New Project';
+    projectButtonCont.appendChild(addProjectBtn);
+    mainDiv.appendChild(projectButtonCont);
     mainDiv.appendChild(taskDiv);
     taskDiv.appendChild(taskList);
   

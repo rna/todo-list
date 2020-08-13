@@ -64,3 +64,9 @@ projects.forEach(element => {
     DOM.displayTasks(showTasks,element.todos)
   })
 });
+
+// create popups
+const addProjectBtn = document.getElementById('addProjectBtn');
+addProjectBtn.addEventListener('click', () => {
+  document.querySelector('.popup').style.display = 'flex';
+})
