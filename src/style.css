@@ -59,3 +59,24 @@ body {
   background-color: #f07989;
   cursor: pointer;
 }
+
+.eachTask {
+  background-color: lightgrey;
+  margin: 5px;
+  padding: 5px 10px;
+  line-height: 0;
+}
+
+.minTask, .maxTask {
+  display: flex;
+  justify-content: space-between;
+}
+
+.taskAction{
+  display: flex;
+}
+
+.taskAction>p:nth-child(2) {
+  margin-right: 5px;
+  margin-left: 5px;
+}

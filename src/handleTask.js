@@ -4,7 +4,7 @@ const handleTask = (function(){
     store.push(obj);
   }
 
-  const updateTask = (id, objProp, value) => {
+  const editTask = (id, objProp, value) => {
     taskStore[id-1][objProp] = value;
   }
 

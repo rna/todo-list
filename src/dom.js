@@ -103,7 +103,7 @@ const DOM = (function(){
       node.appendChild(item)
       document.getElementById(project.name).addEventListener('click',()=>{
         showTasks.innerHTML = "";
-        displayTasks(showTasks,project.todos)
+        // displayAllTasks(showTasks,project.todos)
       })
   }
   
@@ -113,30 +113,7 @@ const DOM = (function(){
   
     return radioForm;
   }
-  
-  const displayTasks = (node, arr) => {
 
-    arr.forEach(task => {
-      const list = document.createElement("li");
-      projectTasks(list, task);
-      node.appendChild(list);
-    });
-    return node;
-  }
-  
-  const projectTasks = (list,task) => {
-    Object.values(task).forEach(ele => {
-      list.appendChild(document.createTextNode(`${ele} `));
-    })
-  }
-  
-  const listNewTask = (task) => {
-    const uList = document.getElementById('taskDisplay')
-    const list = document.createElement("li");
-    projectTasks(list, task);
-    return uList.appendChild(list);
-  }
-  
   const createDivs = () => {
     const navi = document.createElement('nav');
     const innerCont = document.createElement('div');
@@ -144,7 +121,7 @@ const DOM = (function(){
     const mainDiv = document.createElement('div');
     const allDivs =document.createElement('div');
     const taskDiv = document.createElement('div');
-    const taskList = document.createElement('ul');
+    const taskList = document.createElement('div');
     const projectButtonCont = document.createElement('div');
     const addProjectBtn = document.createElement('button');
   
@@ -174,16 +151,67 @@ const DOM = (function(){
     return allDivs;
   }
 
+  const showTask = (task) => {
+    const showTaskDiv = document.createElement('div');
+    showTaskDiv.className = "eachTask";
+    showTaskDiv.innerHTML = `
+        <div class="minTask">
+          <p>${task.title} - ${task.dueDate}</p>
+          <div class="taskAction">
+            <p><a id="editButton" href="">Edit</a></p>
+            <p><a id="moreButton" href="">More</a></p>
+            <p><a id="deleteButton" href="">X</a></p>
+          </div>
+        </div>
+        <div class="maxTask" id="maxTask">
+        </div>
+    `;
+    return showTaskDiv;
+  }
+
+  const taskDetail = (task) => {
+    let moreTask = document.getElementById('moreButton');
+    let maxTask = document.getElementById('maxTask');
+    moreTask.addEventListener('click',(e)=>{
+      if (moreTask.innerHTML == "More"){
+        moreTask.innerHTML = "Less";
+        maxTask.innerHTML = `
+      <p>${task.description}</p>
+        <p>${task.priority}</p>
+      `;
+      }
+      else {
+        moreTask.innerHTML="More";
+        maxTask.innerHTML = "";
+      }
+      e.preventDefault();
+    })
+  }
+
+  const displayAllTasks = (node, arr) => {
+    let actions = arr.map(task=>node.appendChild(showTask(task)));
+
+    let results = Promise.all(actions);
+
+    results.then(data => Promise.all(data.map(task => taskDetail(task))))
+    
+    // arr.forEach(task => {
+    //   Promise.resolve(node.append(showTask(task))).then(taskDetail(task))
+    // })
+    // return node;
+  }
+
   return {
-    todoForm,
-    listNewTask,
     projectForm,
+    todoForm,
     displayProjects,
     listNewProject,
-    displayTasks,
-    createDivs,
     sideProjects,
-    newSideProject
+    newSideProject,
+    displayAllTasks,
+    showTask,
+    taskDetail,
+    createDivs
   }
 })();
 

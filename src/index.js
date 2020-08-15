@@ -23,7 +23,7 @@ mainDiv.appendChild(DOM.todoForm());
 
 const radioForm = document.getElementById('doForm');
 mainDiv.appendChild(DOM.displayProjects(radioForm, projects));
-projects[0].length==0 ? null : DOM.displayTasks(showTasks, projects[0].todos);
+projects[0].length==0 ? null : DOM.displayAllTasks(showTasks, projects[0].todos);
 sidebar.appendChild(DOM.sideProjects(projects));
 
 //create a new project
@@ -53,7 +53,7 @@ createtask.addEventListener('submit', (e) => {
   const tasky = new Task(title, description, dueDate, priority);
   
   handleTask.addTask(project.todos,tasky);
-  showTasks.appendChild(DOM.listNewTask(tasky));
+  showTasks.appendChild(DOM.showTask(tasky));
   saveToBrowser(projects);
   e.preventDefault();
 })
@@ -61,7 +61,7 @@ createtask.addEventListener('submit', (e) => {
 projects.forEach(element => {
   document.getElementById(element.name).addEventListener('click',()=>{
     showTasks.innerHTML = "";
-    DOM.displayTasks(showTasks,element.todos)
+    DOM.displayAllTasks(showTasks,element.todos)
   })
 });
 
@@ -70,3 +70,6 @@ const addProjectBtn = document.getElementById('addProjectBtn');
 addProjectBtn.addEventListener('click', () => {
   document.querySelector('.popup').style.display = 'flex';
 })
+
+console.log(projects);
+// Promise.resolve(mainDiv.appendChild(DOM.showTask())).then(DOM.taskDetail());
