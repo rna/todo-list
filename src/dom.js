@@ -159,19 +159,20 @@ const DOM = (function(){
           <p>${task.title} - ${task.dueDate}</p>
           <div class="taskAction">
             <p><a id="editButton" href="">Edit</a></p>
-            <p><a id="moreButton" href="">More</a></p>
+            <p><a id="moreButton-${task.title}" href="">More</a></p>
             <p><a id="deleteButton" href="">X</a></p>
           </div>
         </div>
-        <div class="maxTask" id="maxTask">
+        <div class="maxTask" id="maxTask-${task.title}">
         </div>
     `;
+  
     return showTaskDiv;
   }
 
   const taskDetail = (task) => {
-    let moreTask = document.getElementById('moreButton');
-    let maxTask = document.getElementById('maxTask');
+    let moreTask = document.getElementById(`moreButton-${task.title}`);
+    let maxTask = document.getElementById(`maxTask-${task.title}`);
     moreTask.addEventListener('click',(e)=>{
       if (moreTask.innerHTML == "More"){
         moreTask.innerHTML = "Less";
@@ -189,17 +190,11 @@ const DOM = (function(){
   }
 
   const displayAllTasks = (node, arr) => {
-    let actions = arr.map(task=>node.appendChild(showTask(task)));
-
-    let results = Promise.all(actions);
-
-    results.then(data => Promise.all(data.map(task => taskDetail(task))))
-    
-    // arr.forEach(task => {
-    //   Promise.resolve(node.append(showTask(task))).then(taskDetail(task))
-    // })
-    // return node;
-  }
+    arr.forEach(task => {
+        Promise.resolve(node.append(showTask(task))).then(taskDetail(task))
+      })
+      return node;
+    }
 
   return {
     projectForm,
