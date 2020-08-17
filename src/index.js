@@ -9,17 +9,18 @@ mainContainer.appendChild(DOM.createDivs());
 
 let projects = readFromBrowser() || [] ;
 if(projects.length == 0){
- const defaultProject = new Project("Inbox");
- projects.push(defaultProject);
- saveToBrowser(projects);
+  const defaultProject = new Project("Inbox");
+  projects.push(defaultProject);
+  saveToBrowser(projects);
 }
 
 const sidebar = document.getElementById('sidebar');
 const mainDiv = document.getElementById('mainDiv');
 const showTasks = document.getElementById('taskDisplay');
+const popupContent = document.getElementById('popup-content');
 
-mainDiv.appendChild(DOM.projectForm());
-mainDiv.appendChild(DOM.todoForm());
+popupContent.appendChild(DOM.projectForm());
+popupContent.appendChild(DOM.todoForm());
 
 const radioForm = document.getElementById('doForm');
 mainDiv.appendChild(DOM.displayProjects(radioForm, projects));
@@ -70,6 +71,10 @@ const addProjectBtn = document.getElementById('addProjectBtn');
 addProjectBtn.addEventListener('click', () => {
   document.querySelector('.popup').style.display = 'flex';
 })
+
+document.getElementById('close').addEventListener('click', () => {
+  document.querySelector('.popup').style.display = 'none';
+});
 
 console.log(projects);
 // Promise.resolve(mainDiv.appendChild(DOM.showTask())).then(DOM.taskDetail());

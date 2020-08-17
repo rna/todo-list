@@ -124,6 +124,11 @@ const DOM = (function(){
     const taskList = document.createElement('div');
     const projectButtonCont = document.createElement('div');
     const addProjectBtn = document.createElement('button');
+    const popupCont = document.createElement('div');
+    const popupContent = document.createElement('div');
+    const closeButton = document.createElement('a');
+  
+  
   
     navi.className = 'navbar';
     navi.innerHTML = 'Todo List'
@@ -136,9 +141,17 @@ const DOM = (function(){
     taskList.id = 'taskDisplay';
     projectButtonCont.id = 'projectBtnCont';
     addProjectBtn.id = 'addProjectBtn';
-    
-    
+    popupCont.className = 'popup';
+    popupCont.id = 'popup';
+    popupContent.className = 'popup-content';
+    popupContent.id = 'popup-content';
+    closeButton.innerHTML = 'X';
+    closeButton.id = 'close';
+
+    popupContent.appendChild(closeButton);
     allDivs.appendChild(navi);
+    popupCont.appendChild(popupContent);
+    allDivs.appendChild(popupCont);
     allDivs.appendChild(innerCont);
     innerCont.appendChild(sidebar);
     innerCont.appendChild(mainDiv);

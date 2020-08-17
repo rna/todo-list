@@ -80,3 +80,11 @@ body {
   margin-right: 5px;
   margin-left: 5px;
 }
+
+#doForm, #addProjectBtn, #projectForm, #submitButton, input,
+select {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 15px;
+  outline: none;
+}
