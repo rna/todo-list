@@ -50,6 +50,7 @@ body {
   background: whitesmoke;
   padding: 20px;
   border-radius: 5px;
+  text-align: center;
 }
 
 #close {
@@ -81,10 +82,26 @@ body {
   margin-left: 5px;
 }
 
-#doForm, #addProjectBtn, #projectForm,#taskSubmitButton, #projectSubmitButton, input,
+#doForm, #addProjectBtn, #projectform,#taskSubmitButton, #projectSubmitButton, input,
 select {
   margin: 5px;
   padding: 5px;
   border-radius: 15px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+#projectform {
   display: flex;
+  justify-content: center;
+}
+
+input[type=submit]:hover, #addProjectBtn:hover {
+  background-color: #db4c3f;
+  color: white;
+}
+
+#doForm {
+  width: auto;
+  
 }

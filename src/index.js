@@ -23,7 +23,7 @@ popupContent.appendChild(DOM.projectForm());
 mainDiv.appendChild(DOM.todoForm());
 
 const formNode = document.getElementById('doForm');
-DOM.displayProjects(formNode, projects);
+formNode.insertBefore(DOM.displayProjects(formNode, projects),formNode.childNodes[4]);
 projects[0].length==0 ? null : DOM.displayAllTasks(showTasks, projects[0].todos);
 sidebar.appendChild(DOM.sideProjects(projects));
 
