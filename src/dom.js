@@ -14,8 +14,6 @@ const DOM = (function(){
     const popupContent = document.createElement('div');
     const closeButton = document.createElement('a');
   
-  
-  
     navi.className = 'navbar';
     navi.innerHTML = 'Todo List'
     sidebar.className = 'sidebar';

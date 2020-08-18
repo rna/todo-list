@@ -17,13 +17,13 @@ if(projects.length == 0){
 const sidebar = document.getElementById('sidebar');
 const mainDiv = document.getElementById('mainDiv');
 const showTasks = document.getElementById('taskDisplay');
-// const popupContent = document.getElementById('popup-content');
+const popupContent = document.getElementById('popup-content');
 
-mainDiv.appendChild(DOM.projectForm());
+popupContent.appendChild(DOM.projectForm());
 mainDiv.appendChild(DOM.todoForm());
 
 const formNode = document.getElementById('doForm');
-mainDiv.appendChild(DOM.displayProjects(formNode, projects));
+DOM.displayProjects(formNode, projects);
 projects[0].length==0 ? null : DOM.displayAllTasks(showTasks, projects[0].todos);
 sidebar.appendChild(DOM.sideProjects(projects));
 
@@ -63,7 +63,7 @@ createtask.addEventListener('submit', (e) => {
 const addProjectBtn = document.getElementById('addProjectBtn');
 addProjectBtn.addEventListener('click', () => {
   document.querySelector('.popup').style.display = 'flex';
-})
+});
 
 document.getElementById('close').addEventListener('click', () => {
   document.querySelector('.popup').style.display = 'none';

@@ -44,7 +44,7 @@ body {
 
 .popup-content {
   height: 60px;
-  width: 840px;
+  width: 60em;
   position: absolute;
   top: 200px;
   background: whitesmoke;
@@ -86,5 +86,5 @@ select {
   margin: 5px;
   padding: 5px;
   border-radius: 15px;
-  outline: none;
+  display: flex;
 }
