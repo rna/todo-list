@@ -29,14 +29,14 @@ const DOM = (function(){
     const submitButton = document.createElement('input');
     submitButton.type = 'submit';
     submitButton.value = 'Add ToDo';
-    submitButton.id = 'submitButton';
+    submitButton.id = 'taskSubmitButton';
   
     doForm.appendChild(titleField);
     doForm.appendChild(descriptionField);
     doForm.appendChild(dateField);
     doForm.appendChild(priorityField);
     doForm.appendChild(submitButton);
-  
+    
     return doForm;
   }
   
@@ -53,37 +53,30 @@ const DOM = (function(){
     const submitButton = document.createElement('input');
     submitButton.type = 'submit';
     submitButton.value = 'Add Project';
-    submitButton.id = 'submitButton';
+    submitButton.id = 'projectSubmitButton';
     form.appendChild(submitButton);
     return form;
   };
   
-  const addRadioButton = (eleForm, element) => {
-    let radioButton = document.createElement('input')
-      radioButton.type = "radio";
-      radioButton.id = element;
-      radioButton.name = "project";
-      radioButton.value = element;
-      if (radioButton.id == "Inbox") {
-        radioButton.checked = true;
-      }
+  const addProjectDropDown = (selectForm, element) => {
   
-      let radioLabel = document.createElement('label');
-      radioLabel.for = element;
-      radioLabel.innerHTML = element;
-      
-      eleForm.appendChild(radioButton);
-      eleForm.appendChild(radioLabel);
+      let projectOption = document.createElement('option');
+      projectOption.value = element;
+      projectOption.innerHTML = element;   
+      selectForm.appendChild(projectOption);
   }
   
   
-  const displayProjects = (radioForm, projects) => {
-    
+  const displayProjects = (node, projects) => {
+    let selectOption = document.createElement('select')
+      selectOption.id = "selectProjects";
+      selectOption.name = "projects";
+
     projects.forEach(element => {  
-      addRadioButton(radioForm,element.name);
+      addProjectDropDown(selectOption,element.name);
     });
   
-    return radioForm;
+    return node.appendChild(selectOption);
   }
   
   const sideProjects = (projects) => {
@@ -101,17 +94,19 @@ const DOM = (function(){
       item.innerHTML = project.name;
       item.id = project.name;
       node.appendChild(item)
-      document.getElementById(project.name).addEventListener('click',()=>{
-        showTasks.innerHTML = "";
+      // document.getElementById(project.name).addEventListener('click',()=>{
+      //   showTasks.innerHTML = "";
         // displayAllTasks(showTasks,project.todos)
-      })
+      // })
   }
   
-  const listNewProject = (radioForm, projects) => {
+  const listNewProject = (node, projects) => {
     
-    addRadioButton(radioForm,projects[projects.length-1].name);
+    let projectSelect = document.getElementById('projects');
+
+    addProjectDropDown(projectSelect,projects[projects.length-1].name);
   
-    return radioForm;
+    return node.appendChild(projectSelect);
   }
 
   const createDivs = () => {

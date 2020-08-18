@@ -22,8 +22,8 @@ const popupContent = document.getElementById('popup-content');
 popupContent.appendChild(DOM.projectForm());
 popupContent.appendChild(DOM.todoForm());
 
-const radioForm = document.getElementById('doForm');
-mainDiv.appendChild(DOM.displayProjects(radioForm, projects));
+const formNode = document.getElementById('doForm');
+mainDiv.appendChild(DOM.displayProjects(formNode, projects));
 projects[0].length==0 ? null : DOM.displayAllTasks(showTasks, projects[0].todos);
 sidebar.appendChild(DOM.sideProjects(projects));
 
@@ -33,7 +33,7 @@ newProjectForm.addEventListener('submit', (e) => {
   const name = document.getElementById('name').value;
   const newProject = new Project(name);
   projects.push(newProject);
-  mainDiv.appendChild(DOM.listNewProject(radioForm, projects));
+  mainDiv.appendChild(DOM.listNewProject(formNode, projects));
   const sideProjectList = document.getElementById('sideProjectList');
   DOM.newSideProject(sideProjectList, newProject);
   saveToBrowser(projects);
@@ -49,10 +49,9 @@ createtask.addEventListener('submit', (e) => {
   const priority = document.getElementById('priority').value;
 
   //get a project
-  const projectName = document.querySelector('input[name="project"]:checked').value;
+  const projectName = document.getElementById('selectProjects').value;
   const project = projects.find(e => e.name == projectName);
   const tasky = new Task(title, description, dueDate, priority);
-  
   handleTask.addTask(project.todos,tasky);
   showTasks.appendChild(DOM.showTask(tasky));
   saveToBrowser(projects);
@@ -77,4 +76,3 @@ document.getElementById('close').addEventListener('click', () => {
 });
 
 console.log(projects);
-// Promise.resolve(mainDiv.appendChild(DOM.showTask())).then(DOM.taskDetail());

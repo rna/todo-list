@@ -81,7 +81,7 @@ body {
   margin-left: 5px;
 }
 
-#doForm, #addProjectBtn, #projectForm, #submitButton, input,
+#doForm, #addProjectBtn, #projectForm,#taskSubmitButton, #projectSubmitButton, input,
 select {
   margin: 5px;
   padding: 5px;
