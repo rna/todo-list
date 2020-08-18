@@ -19,8 +19,8 @@ const mainDiv = document.getElementById('mainDiv');
 const showTasks = document.getElementById('taskDisplay');
 const popupContent = document.getElementById('popup-content');
 
-popupContent.appendChild(DOM.projectForm());
-popupContent.appendChild(DOM.todoForm());
+mainDiv.appendChild(DOM.projectForm());
+mainDiv.appendChild(DOM.todoForm());
 
 const formNode = document.getElementById('doForm');
 mainDiv.appendChild(DOM.displayProjects(formNode, projects));
@@ -33,7 +33,7 @@ newProjectForm.addEventListener('submit', (e) => {
   const name = document.getElementById('name').value;
   const newProject = new Project(name);
   projects.push(newProject);
-  mainDiv.appendChild(DOM.listNewProject(formNode, projects));
+  //mainDiv.appendChild(DOM.listNewProject(formNode, projects));
   const sideProjectList = document.getElementById('sideProjectList');
   DOM.newSideProject(sideProjectList, newProject);
   saveToBrowser(projects);
