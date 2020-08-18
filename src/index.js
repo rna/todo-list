@@ -17,7 +17,7 @@ if(projects.length == 0){
 const sidebar = document.getElementById('sidebar');
 const mainDiv = document.getElementById('mainDiv');
 const showTasks = document.getElementById('taskDisplay');
-const popupContent = document.getElementById('popup-content');
+// const popupContent = document.getElementById('popup-content');
 
 mainDiv.appendChild(DOM.projectForm());
 mainDiv.appendChild(DOM.todoForm());
@@ -33,7 +33,8 @@ newProjectForm.addEventListener('submit', (e) => {
   const name = document.getElementById('name').value;
   const newProject = new Project(name);
   projects.push(newProject);
-  //mainDiv.appendChild(DOM.listNewProject(formNode, projects));
+  mainDiv.appendChild(DOM.listNewProject(formNode, projects));
+  
   const sideProjectList = document.getElementById('sideProjectList');
   DOM.newSideProject(sideProjectList, newProject);
   saveToBrowser(projects);
@@ -57,13 +58,6 @@ createtask.addEventListener('submit', (e) => {
   saveToBrowser(projects);
   e.preventDefault();
 })
-
-projects.forEach(element => {
-  document.getElementById(element.name).addEventListener('click',()=>{
-    showTasks.innerHTML = "";
-    DOM.displayAllTasks(showTasks,element.todos)
-  })
-});
 
 // create popups
 const addProjectBtn = document.getElementById('addProjectBtn');

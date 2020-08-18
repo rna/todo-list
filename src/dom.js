@@ -1,4 +1,55 @@
 const DOM = (function(){
+  
+  const createDivs = () => {
+    const navi = document.createElement('nav');
+    const innerCont = document.createElement('div');
+    const sidebar = document.createElement('div');
+    const mainDiv = document.createElement('div');
+    const allDivs =document.createElement('div');
+    const taskDiv = document.createElement('div');
+    const taskList = document.createElement('div');
+    const projectButtonCont = document.createElement('div');
+    const addProjectBtn = document.createElement('button');
+    const popupCont = document.createElement('div');
+    const popupContent = document.createElement('div');
+    const closeButton = document.createElement('a');
+  
+  
+  
+    navi.className = 'navbar';
+    navi.innerHTML = 'Todo List'
+    sidebar.className = 'sidebar';
+    sidebar.id = 'sidebar';
+    mainDiv.className = 'mainDiv';
+    mainDiv.id = 'mainDiv';
+    innerCont.className = 'innerCont';
+    taskDiv.id = 'taskDiv';
+    taskList.id = 'taskDisplay';
+    projectButtonCont.id = 'projectBtnCont';
+    addProjectBtn.id = 'addProjectBtn';
+    popupCont.className = 'popup';
+    popupCont.id = 'popup';
+    popupContent.className = 'popup-content';
+    popupContent.id = 'popup-content';
+    closeButton.innerHTML = 'X';
+    closeButton.id = 'close';
+
+    popupContent.appendChild(closeButton);
+    allDivs.appendChild(navi);
+    popupCont.appendChild(popupContent);
+    allDivs.appendChild(popupCont);
+    allDivs.appendChild(innerCont);
+    innerCont.appendChild(sidebar);
+    innerCont.appendChild(mainDiv);
+    addProjectBtn.innerHTML = 'Add New Project';
+    projectButtonCont.appendChild(addProjectBtn);
+    mainDiv.appendChild(projectButtonCont);
+    mainDiv.appendChild(taskDiv);
+    taskDiv.appendChild(taskList);
+  
+    return allDivs;
+  }
+
   const todoForm = () => {
     const doForm = document.createElement('form');
     doForm.id = 'doForm';
@@ -59,13 +110,11 @@ const DOM = (function(){
   };
   
   const addProjectDropDown = (selectForm, element) => {
-  
       let projectOption = document.createElement('option');
       projectOption.value = element;
       projectOption.innerHTML = element;   
       selectForm.appendChild(projectOption);
   }
-  
   
   const displayProjects = (node, projects) => {
     let selectOption = document.createElement('select')
@@ -79,6 +128,15 @@ const DOM = (function(){
     return node.appendChild(selectOption);
   }
   
+  const listNewProject = (node, projects) => {
+    
+    let projectSelect = document.getElementById('selectProjects');
+
+    addProjectDropDown(projectSelect,projects[projects.length-1].name);
+  
+    return node.appendChild(projectSelect);
+  }
+
   const sideProjects = (projects) => {
     const listing = document.createElement('ul');
     listing.id = 'sideProjectList';
@@ -93,70 +151,11 @@ const DOM = (function(){
     const item = document.createElement('li');
       item.innerHTML = project.name;
       item.id = project.name;
-      node.appendChild(item)
-      // document.getElementById(project.name).addEventListener('click',()=>{
-      //   showTasks.innerHTML = "";
-        // displayAllTasks(showTasks,project.todos)
-      // })
-  }
-  
-  const listNewProject = (node, projects) => {
-    
-    let projectSelect = document.getElementById('projects');
-
-    addProjectDropDown(projectSelect,projects[projects.length-1].name);
-  
-    return node.appendChild(projectSelect);
-  }
-
-  const createDivs = () => {
-    const navi = document.createElement('nav');
-    const innerCont = document.createElement('div');
-    const sidebar = document.createElement('div');
-    const mainDiv = document.createElement('div');
-    const allDivs =document.createElement('div');
-    const taskDiv = document.createElement('div');
-    const taskList = document.createElement('div');
-    const projectButtonCont = document.createElement('div');
-    const addProjectBtn = document.createElement('button');
-    const popupCont = document.createElement('div');
-    const popupContent = document.createElement('div');
-    const closeButton = document.createElement('a');
-  
-  
-  
-    navi.className = 'navbar';
-    navi.innerHTML = 'Todo List'
-    sidebar.className = 'sidebar';
-    sidebar.id = 'sidebar';
-    mainDiv.className = 'mainDiv';
-    mainDiv.id = 'mainDiv';
-    innerCont.className = 'innerCont';
-    taskDiv.id = 'taskDiv';
-    taskList.id = 'taskDisplay';
-    projectButtonCont.id = 'projectBtnCont';
-    addProjectBtn.id = 'addProjectBtn';
-    popupCont.className = 'popup';
-    popupCont.id = 'popup';
-    popupContent.className = 'popup-content';
-    popupContent.id = 'popup-content';
-    closeButton.innerHTML = 'X';
-    closeButton.id = 'close';
-
-    popupContent.appendChild(closeButton);
-    allDivs.appendChild(navi);
-    popupCont.appendChild(popupContent);
-    allDivs.appendChild(popupCont);
-    allDivs.appendChild(innerCont);
-    innerCont.appendChild(sidebar);
-    innerCont.appendChild(mainDiv);
-    addProjectBtn.innerHTML = 'Add New Project';
-    projectButtonCont.appendChild(addProjectBtn);
-    mainDiv.appendChild(projectButtonCont);
-    mainDiv.appendChild(taskDiv);
-    taskDiv.appendChild(taskList);
-  
-    return allDivs;
+      item.addEventListener('click',()=>{
+        showTasks.innerHTML = "";
+        displayAllTasks(showTasks,project.todos)
+      })
+    return node.appendChild(item);
   }
 
   const showTask = (task) => {
