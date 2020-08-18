@@ -20,7 +20,7 @@ const showTasks = document.getElementById('taskDisplay');
 const popupContent = document.getElementById('popup-content');
 
 popupContent.appendChild(DOM.projectForm());
-mainDiv.appendChild(DOM.todoForm());
+mainDiv.insertBefore(DOM.todoForm(),mainDiv.childNodes[1]);
 
 const formNode = document.getElementById('doForm');
 formNode.insertBefore(DOM.displayProjects(formNode, projects),formNode.childNodes[4]);
