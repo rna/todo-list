@@ -151,10 +151,11 @@ const DOM = (function(){
       item.id = project.name;
       item.addEventListener('click',()=>{
         showTasks.innerHTML = "";
-        displayAllTasks(showTasks,project.todos)
+        displayAllTasks(showTasks,project.todos);
       })
     return node.appendChild(item);
   }
+  
 
   const showTask = (task) => {
     const showTaskDiv = document.createElement('div');
@@ -165,7 +166,7 @@ const DOM = (function(){
           <div class="taskAction">
             <p><a id="editButton" href="">Edit</a></p>
             <p><a id="moreButton-${task.title}" href="">More</a></p>
-            <p><a id="deleteButton" href="">X</a></p>
+            <p><button id="deleteButton" onclick ="deleteItem()" >X</button></p>
           </div>
         </div>
         <div class="maxTask" id="maxTask-${task.title}">

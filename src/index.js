@@ -69,4 +69,14 @@ document.getElementById('close').addEventListener('click', () => {
   document.querySelector('.popup').style.display = 'none';
 });
 
+
+const deleteItem = () => {
+  console.log("yes");
+}
+
+var result = (function () {
+  var name = "Barry"; 
+  return name; 
+  })(); 
+
 console.log(projects);
