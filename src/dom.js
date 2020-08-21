@@ -62,24 +62,28 @@ const DOM = (function(){
     titleField.placeholder = 'Enter Title';
     titleField.name = 'title';
     titleField.id = 'title';
+    titleField.required = true;
   
     const descriptionField = document.createElement('input');
     descriptionField.type = 'text';
     descriptionField.placeholder = 'Enter Description';
     descriptionField.name = 'description';
     descriptionField.id = 'description';
+    descriptionField.required = true;
   
     const dateField = document.createElement('input');
-    dateField.type = 'text';
+    dateField.type = 'date';
     dateField.placeholder = 'Enter Due Date';
     dateField.name = 'date';
     dateField.id = 'date';
+    dateField.required = true;
   
     const priorityField = document.createElement('input');
     priorityField.type = 'text';
     priorityField.placeholder = 'Enter Priority';
     priorityField.name = 'priority';
     priorityField.id = 'priority';
+    priorityField.required = true;
   
     const submitButton = document.createElement('input');
     submitButton.type = 'submit';
@@ -103,6 +107,7 @@ const DOM = (function(){
     nameField.placeholder = 'Enter Project name';
     nameField.name = 'name';
     nameField.id = 'name';
+    nameField.required = true;
     form.appendChild(nameField);
   
     const submitButton = document.createElement('input');
@@ -243,7 +248,7 @@ const DOM = (function(){
     descriptionField.id = 'editDescription';
   
     const dateField = document.createElement('input');
-    dateField.type = 'text';
+    dateField.type = 'date';
     dateField.placeholder = 'Enter Due Date';
     dateField.name = 'date';
     dateField.id = 'editDate';
@@ -296,7 +301,18 @@ const DOM = (function(){
     return node.appendChild(selectOption);
   }
 
+  const clearInput = () => {
+    document.getElementById('doForm').reset();
+    document.getElementById('projectform').reset();
+  }
+
+  const closepopup = () => {
+    document.getElementById('popup').style.display = 'none';
+  }
+
   return {
+    clearInput,
+    closepopup,
     projectForm,
     todoForm,
     displayProjects,

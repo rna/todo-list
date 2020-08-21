@@ -37,6 +37,9 @@ newProjectForm.addEventListener('submit', (e) => {
   const sideProjectList = document.getElementById('sideProjectList');
   DOM.newSideProject(sideProjectList, newProject);
   saveToBrowser(projects);
+  DOM.clearInput();
+  DOM.closepopup();
+  alert("Your project has been created");
   e.preventDefault();
 });
 
@@ -54,6 +57,7 @@ createtask.addEventListener('submit', (e) => {
   const newTask = new Task(title, description, dueDate, priority);
   handleTask.addTask(project.todos,newTask);
   Promise.resolve(showTasks.appendChild(DOM.showTask(newTask))).then(DOM.taskOption(project,newTask));
+  DOM.clearInput();
   e.preventDefault();
 })
 
