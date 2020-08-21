@@ -1,13 +1,12 @@
 import {Project, Task} from './prototypes';
 import DOM from './dom';
-import {saveToBrowser,readFromBrowser} from './browserStorage';
-import handleTask from './handleTask';
+import {saveToBrowser} from './browserStorage';
+import {projects, handleTask} from './handleTask';
 import './style.css';
 
 const mainContainer = document.getElementById('container');
 mainContainer.appendChild(DOM.createDivs());
 
-let projects = readFromBrowser() || [] ;
 if(projects.length == 0){
   const defaultProject = new Project("Inbox");
   projects.push(defaultProject);
@@ -24,7 +23,7 @@ mainDiv.insertBefore(DOM.todoForm(),mainDiv.childNodes[1]);
 
 const formNode = document.getElementById('doForm');
 formNode.insertBefore(DOM.displayProjects(formNode, projects),formNode.childNodes[4]);
-projects[0].length==0 ? null : DOM.displayAllTasks(showTasks, projects[0].todos);
+projects[0].length==0 ? null : DOM.displayAllTasks(showTasks, projects[0]);
 sidebar.appendChild(DOM.sideProjects(projects));
 
 //create a new project
@@ -37,7 +36,7 @@ newProjectForm.addEventListener('submit', (e) => {
   
   const sideProjectList = document.getElementById('sideProjectList');
   DOM.newSideProject(sideProjectList, newProject);
-  saveToBrowser(projects);
+  
   e.preventDefault();
 });
 
@@ -54,7 +53,7 @@ createtask.addEventListener('submit', (e) => {
   const project = projects.find(e => e.name == projectName);
   const newTask = new Task(title, description, dueDate, priority);
   handleTask.addTask(project.todos,newTask);
-  Promise.resolve(showTasks.appendChild(DOM.showTask(newTask))).then(DOM.taskDetail(newTask));
+  Promise.resolve(showTasks.appendChild(DOM.showTask(newTask))).then(DOM.taskDetail(project,newTask));
   saveToBrowser(projects);
   e.preventDefault();
 })

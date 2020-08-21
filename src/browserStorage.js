@@ -11,12 +11,4 @@ const readFromBrowser = () => {
   }
 }
 
-const updateBrowser = () => {
-  
-}
-
-const deleteInBrowser = () => {
-  
-}
-
 export {saveToBrowser, readFromBrowser}

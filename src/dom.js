@@ -1,4 +1,4 @@
-import handleTask from './handleTask';
+import {handleTask} from './handleTask';
 
 const DOM = (function(){
   
@@ -153,7 +153,7 @@ const DOM = (function(){
       item.id = project.name;
       item.addEventListener('click',()=>{
         showTasks.innerHTML = "";
-        displayAllTasks(showTasks,project.todos);
+        displayAllTasks(showTasks,project);
       })
     return node.appendChild(item);
   }
@@ -178,7 +178,7 @@ const DOM = (function(){
     return showTaskDiv;
   }
 
-  const taskDetail = (task) => {
+  const taskDetail = (project,task) => {
     //more or less task function
     let moreTask = document.getElementById(`moreButton-${task.title}`);
     let maxTask = document.getElementById(`maxTask-${task.title}`);
@@ -200,15 +200,16 @@ const DOM = (function(){
     //delete task
     let deleteButton =  document.getElementById(`deleteButton-${task.title}`);
     deleteButton.addEventListener('click',(e)=>{
-      handleTask.deleteTask(task);
+      handleTask.deleteTask(project,task, e);
       e.preventDefault();
     });
 
   }
 
-  const displayAllTasks = (node, tasks) => {
-    tasks.forEach(task => {
-        Promise.resolve(node.append(showTask(task))).then(taskDetail(task))
+  const displayAllTasks = (node, project) => {
+
+    project.todos.forEach(task => {
+        Promise.resolve(node.append(showTask(task))).then(taskDetail(project, task))
       })
       return node;
     }
