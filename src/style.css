@@ -77,6 +77,11 @@ body {
   display: flex;
 }
 
+.taskAction a {
+  text-decoration: none;
+  color: #db4c3f;
+}
+
 .taskAction>p:nth-child(2) {
   margin-right: 5px;
   margin-left: 5px;
@@ -103,5 +108,12 @@ input[type=submit]:hover, #addProjectBtn:hover {
 
 #doForm {
   width: auto;
-  
+}
+
+.displayed {
+  font-weight: bold;
+}
+
+.showdivs {
+  width: 50%;
 }
