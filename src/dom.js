@@ -1,4 +1,4 @@
-import {handleTask} from './handleTask';
+import {handleTask, projects} from './handleTask';
 
 const DOM = (function(){
   
@@ -15,6 +15,7 @@ const DOM = (function(){
     const popupCont = document.createElement('div');
     const popupContent = document.createElement('div');
     const closeButton = document.createElement('a');
+    const editFormDiv = document.createElement('div');
   
     navi.className = 'navbar';
     navi.innerHTML = 'Todo List'
@@ -33,6 +34,8 @@ const DOM = (function(){
     popupContent.id = 'popup-content';
     closeButton.innerHTML = 'X';
     closeButton.id = 'close';
+    editFormDiv.id = 'editFormDiv';
+
 
     popupContent.appendChild(closeButton);
     allDivs.appendChild(navi);
@@ -46,6 +49,7 @@ const DOM = (function(){
     mainDiv.appendChild(projectButtonCont);
     mainDiv.appendChild(taskDiv);
     taskDiv.appendChild(taskList);
+    mainDiv.appendChild(editFormDiv);
   
     return allDivs;
   }
@@ -166,9 +170,9 @@ const DOM = (function(){
         <div class="minTask">
           <p>${task.title} - ${task.dueDate}</p>
           <div class="taskAction">
-            <p><a id="editButton" href="">Edit</a></p>
+            <p><a id="editButton-${task.title}" href="">Edit</a></p>
             <p><a id="moreButton-${task.title}" href="">More</a></p>
-            <p><button id="deleteButton-${task.title}">X</button></p>
+            <p><a id="deleteButton-${task.title}" href="">X</a></p>
           </div>
         </div>
         <div class="maxTask" id="maxTask-${task.title}">
@@ -178,7 +182,7 @@ const DOM = (function(){
     return showTaskDiv;
   }
 
-  const taskDetail = (project,task) => {
+  const taskOption = (project,task) => {
     //more or less task function
     let moreTask = document.getElementById(`moreButton-${task.title}`);
     let maxTask = document.getElementById(`maxTask-${task.title}`);
@@ -204,15 +208,93 @@ const DOM = (function(){
       e.preventDefault();
     });
 
+    //edit task
+    let editButton =  document.getElementById(`editButton-${task.title}`);
+    editButton.addEventListener('click',(e)=>{
+      addEditForm();
+      handleTask.editTask(project,task);
+      e.preventDefault();
+    },{once:true});
+
   }
 
   const displayAllTasks = (node, project) => {
 
     project.todos.forEach(task => {
-        Promise.resolve(node.append(showTask(task))).then(taskDetail(project, task))
+        Promise.resolve(node.append(showTask(task))).then(taskOption(project, task))
       })
       return node;
     }
+
+  const addEditForm = () => {
+    const editNode = document.getElementById('editFormDiv');
+    const editDoForm = document.createElement('form');
+    editDoForm.id = 'editDoForm';
+    const titleField = document.createElement('input');
+    titleField.type = 'text';
+    titleField.placeholder = 'Enter Title';
+    titleField.name = 'title';
+    titleField.id = 'editTitle';
+  
+    const descriptionField = document.createElement('input');
+    descriptionField.type = 'text';
+    descriptionField.placeholder = 'Enter Description';
+    descriptionField.name = 'description';
+    descriptionField.id = 'editDescription';
+  
+    const dateField = document.createElement('input');
+    dateField.type = 'text';
+    dateField.placeholder = 'Enter Due Date';
+    dateField.name = 'date';
+    dateField.id = 'editDate';
+  
+    const priorityField = document.createElement('input');
+    priorityField.type = 'text';
+    priorityField.placeholder = 'Enter Priority';
+    priorityField.name = 'priority';
+    priorityField.id = 'editPriority';
+  
+    const updateButton = document.createElement('input');
+    updateButton.type = 'submit';
+    updateButton.value = 'Update ToDo';
+    updateButton.id = 'taskUpdateButton';
+
+    const cancelButton = document.createElement('input');
+    cancelButton.type = 'button';
+    cancelButton.value = 'Cancel';
+    cancelButton.id = 'updateCancelButton';
+  
+    editDoForm.appendChild(titleField);
+    editDoForm.appendChild(descriptionField);
+    editDoForm.appendChild(dateField);
+    editDoForm.appendChild(priorityField);
+    displayProjectsinEditForm(editDoForm,projects);
+    editDoForm.appendChild(updateButton);
+    editDoForm.appendChild(cancelButton);
+    
+    editNode.appendChild(editDoForm);
+
+
+    //cancel edit
+
+    const cancelEditButton = document.getElementById('updateCancelButton');
+    const editFormNode = document.getElementById('editFormDiv');
+    cancelEditButton.addEventListener('click',()=>{
+      editFormNode.innerHTML="";
+    })
+  }
+
+  const displayProjectsinEditForm = (node, projects) => {
+    let selectOption = document.createElement('select')
+      selectOption.id = "editSelectProjects";
+      selectOption.name = "projects";
+
+    projects.forEach(element => {  
+      addProjectDropDown(selectOption,element.name);
+    });
+  
+    return node.appendChild(selectOption);
+  }
 
   return {
     projectForm,
@@ -223,7 +305,7 @@ const DOM = (function(){
     newSideProject,
     displayAllTasks,
     showTask,
-    taskDetail,
+    taskOption,
     createDivs
   }
 })();
