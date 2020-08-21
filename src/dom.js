@@ -78,24 +78,28 @@ const DOM = (function(){
     dateField.id = 'date';
     dateField.required = true;
   
-    const priorityField = document.createElement('input');
-    priorityField.type = 'text';
-    priorityField.placeholder = 'Enter Priority';
-    priorityField.name = 'priority';
-    priorityField.id = 'priority';
-    priorityField.required = true;
+    // const priorityField = document.createElement('input');
+    // priorityField.type = 'text';
+    // priorityField.placeholder = 'Enter Priority';
+    // priorityField.name = 'priority';
+    // priorityField.id = 'priority';
+    // priorityField.required = true;
 
-    const readField = document.createElement('select');
+    const priorityField = document.createElement('select');
     const readOption1 = document.createElement('option');
     const readOption2 = document.createElement('option');
-    readOption1.appendChild(document.createTextNode('Read'));
-    readOption1.value = 'Read';
-    readOption2.appendChild(document.createTextNode('Unread'));
-    readOption2.value = 'Unread';
-    readField.appendChild(readOption1);
-    readField.appendChild(readOption2);
-    readField.name = 'read status';
-    readField.id = 'readStatus';
+    const readOption3 = document.createElement('option');
+    readOption1.appendChild(document.createTextNode('High'));
+    readOption1.value = 'High';
+    readOption2.appendChild(document.createTextNode('Medium'));
+    readOption2.value = 'Medium';
+    readOption3.appendChild(document.createTextNode('Low'));
+    readOption3.value = 'Low';
+    priorityField.appendChild(readOption1);
+    priorityField.appendChild(readOption2);
+    priorityField.appendChild(readOption3);
+    priorityField.name = 'read status';
+    priorityField.id = 'priority';
   
     const submitButton = document.createElement('input');
     submitButton.type = 'submit';
@@ -106,7 +110,7 @@ const DOM = (function(){
     doForm.appendChild(descriptionField);
     doForm.appendChild(dateField);
     doForm.appendChild(priorityField);
-    doForm.appendChild(readField)
+    // doForm.appendChild(readField)
     doForm.appendChild(submitButton);
     
     return doForm;
@@ -210,7 +214,7 @@ const DOM = (function(){
         moreTask.innerHTML = "Less";
         maxTask.innerHTML = `
       <p><span class="displayed">Description: </span> ${task.description}</p>
-        <p><span class="displayed">Priority: </span> ${task.priority}</p>
+        <p><span class="displayed" id="prior">Priority: </span> ${task.priority}</p>
       `;
       }
       else {
