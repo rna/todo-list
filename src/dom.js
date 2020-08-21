@@ -1,3 +1,5 @@
+import handleTask from './handleTask';
+
 const DOM = (function(){
   
   const createDivs = () => {
@@ -166,7 +168,7 @@ const DOM = (function(){
           <div class="taskAction">
             <p><a id="editButton" href="">Edit</a></p>
             <p><a id="moreButton-${task.title}" href="">More</a></p>
-            <p><button id="deleteButton" onclick ="deleteItem()" >X</button></p>
+            <p><button id="deleteButton-${task.title}">X</button></p>
           </div>
         </div>
         <div class="maxTask" id="maxTask-${task.title}">
@@ -177,6 +179,7 @@ const DOM = (function(){
   }
 
   const taskDetail = (task) => {
+    //more or less task function
     let moreTask = document.getElementById(`moreButton-${task.title}`);
     let maxTask = document.getElementById(`maxTask-${task.title}`);
     moreTask.addEventListener('click',(e)=>{
@@ -193,10 +196,18 @@ const DOM = (function(){
       }
       e.preventDefault();
     })
+
+    //delete task
+    let deleteButton =  document.getElementById(`deleteButton-${task.title}`);
+    deleteButton.addEventListener('click',(e)=>{
+      handleTask.deleteTask(task);
+      e.preventDefault();
+    });
+
   }
 
-  const displayAllTasks = (node, arr) => {
-    arr.forEach(task => {
+  const displayAllTasks = (node, tasks) => {
+    tasks.forEach(task => {
         Promise.resolve(node.append(showTask(task))).then(taskDetail(task))
       })
       return node;

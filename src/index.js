@@ -52,9 +52,9 @@ createtask.addEventListener('submit', (e) => {
   //get a project
   const projectName = document.getElementById('selectProjects').value;
   const project = projects.find(e => e.name == projectName);
-  const tasky = new Task(title, description, dueDate, priority);
-  handleTask.addTask(project.todos,tasky);
-  showTasks.appendChild(DOM.showTask(tasky));
+  const newTask = new Task(title, description, dueDate, priority);
+  handleTask.addTask(project.todos,newTask);
+  Promise.resolve(showTasks.appendChild(DOM.showTask(newTask))).then(DOM.taskDetail(newTask));
   saveToBrowser(projects);
   e.preventDefault();
 })
@@ -68,15 +68,5 @@ addProjectBtn.addEventListener('click', () => {
 document.getElementById('close').addEventListener('click', () => {
   document.querySelector('.popup').style.display = 'none';
 });
-
-
-const deleteItem = () => {
-  console.log("yes");
-}
-
-var result = (function () {
-  var name = "Barry"; 
-  return name; 
-  })(); 
 
 console.log(projects);

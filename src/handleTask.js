@@ -8,12 +8,14 @@ const handleTask = (function(){
     taskStore[id-1][objProp] = value;
   }
 
-  const deleteTask = (id) => {
-    taskStore.splice(id-1,1);
+  const deleteTask = (task) => {
+    console.log(task);
+    // taskStore.splice(id-1,1);
   }
 
   return {
-    addTask
+    addTask,
+    deleteTask
   }
 })();
 
