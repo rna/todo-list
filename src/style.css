@@ -68,12 +68,13 @@ body {
   line-height: 0;
 }
 
-.minTask, .maxTask {
+.minTask,
+.maxTask {
   display: flex;
   justify-content: space-between;
 }
 
-.taskAction{
+.taskAction {
   display: flex;
 }
 
@@ -82,12 +83,17 @@ body {
   color: #db4c3f;
 }
 
-.taskAction>p:nth-child(2) {
+.taskAction > p:nth-child(2) {
   margin-right: 5px;
   margin-left: 5px;
 }
 
-#doForm, #addProjectBtn, #projectform,#taskSubmitButton, #projectSubmitButton, input,
+#doForm,
+#addProjectBtn,
+#projectform,
+#taskSubmitButton,
+#projectSubmitButton,
+input,
 select {
   margin: 5px;
   padding: 5px;
@@ -101,7 +107,8 @@ select {
   justify-content: center;
 }
 
-input[type=submit]:hover, #addProjectBtn:hover {
+input[type=submit]:hover,
+#addProjectBtn:hover {
   background-color: #db4c3f;
   color: white;
 }
