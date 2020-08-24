@@ -1,4 +1,5 @@
 import {handleTask, projects} from './handleTask';
+import { reduce } from 'lodash';
 
 const DOM = (function(){
   
@@ -110,7 +111,6 @@ const DOM = (function(){
     doForm.appendChild(descriptionField);
     doForm.appendChild(dateField);
     doForm.appendChild(priorityField);
-    // doForm.appendChild(readField)
     doForm.appendChild(submitButton);
     
     return doForm;
@@ -172,6 +172,15 @@ const DOM = (function(){
     return listing;
   }
 
+  const addStyle = () => {
+    const styles = document.getElementById('sideProjectList');
+    var y = styles.getElementsByTagName("*");
+  var i;
+  for (i = 0; i < y.length; i++) {
+    y[i].style.backgroundColor = "transparent";
+  }
+  }
+
   const newSideProject = (node, project) => {
     const showTasks = document.getElementById('taskDisplay');
     const item = document.createElement('li');
@@ -180,6 +189,9 @@ const DOM = (function(){
       item.addEventListener('click',()=>{
         showTasks.innerHTML = "";
         displayAllTasks(showTasks,project);
+        addStyle();
+        item.style.backgroundColor = 'red';
+        
       })
     return node.appendChild(item);
   }

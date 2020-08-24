@@ -117,3 +117,7 @@ input[type=submit]:hover, #addProjectBtn:hover {
 .showdivs {
   width: 50%;
 }
+
+li.selected {
+  background-color: #db4c3f;
+}
