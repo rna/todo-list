@@ -29,7 +29,7 @@
 
 ## Live Demo
 
-[Live Demo Link](https://github.com/rna/todo-list/blob/feature/todos/dist/index.html)
+[Live Demo Link](https://raw.githack.com/rna/todo-list/feature/todos/dist/index.html)
 
 ## Getting Started
 
