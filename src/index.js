@@ -70,11 +70,3 @@ addProjectBtn.addEventListener('click', () => {
 document.getElementById('close').addEventListener('click', () => {
   document.querySelector('.popup').style.display = 'none';
 });
-
-const sides = document.getElementById('sideProjectList');
-sides.addEventListener('click', () => {
-  const theItem = document.getElementsByTagName("LI");
-  // theItem[0].classList.remove('selected');
-  // theItem[0].className += 'selected';
-})
-console.log(projects);
