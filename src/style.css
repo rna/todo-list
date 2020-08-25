@@ -1,0 +1,130 @@
+body {
+  margin: 0;
+}
+
+.navbar {
+  background-color: #db4c3f;
+  height: 35px;
+}
+
+.innerCont {
+  display: flex;
+}
+
+.sidebar {
+  background-color: #fafafa;
+  width: 20%;
+  height: 100vh;
+}
+
+.mainDiv {
+  width: 80%;
+}
+
+.sidebar li {
+  font-size: 16px;
+  color: #333;
+  font-weight: bolder;
+  list-style: none;
+}
+
+.popup {
+  margin: 0;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.6);
+  width: 100vw;
+  height: 100vw;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  height: 60px;
+  width: 60em;
+  position: absolute;
+  top: 200px;
+  background: whitesmoke;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #f07989;
+  cursor: pointer;
+}
+
+.eachTask {
+  background-color: lightgrey;
+  margin: 5px;
+  padding: 5px 10px;
+  line-height: 0;
+}
+
+.minTask,
+.maxTask {
+  display: flex;
+  justify-content: space-between;
+}
+
+.taskAction {
+  display: flex;
+}
+
+.taskAction a {
+  text-decoration: none;
+  color: #db4c3f;
+}
+
+.taskAction > p:nth-child(2) {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+#doForm,
+#addProjectBtn,
+#projectform,
+#taskSubmitButton,
+#projectSubmitButton,
+input,
+select {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 15px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+#projectform {
+  display: flex;
+  justify-content: center;
+}
+
+input[type=submit]:hover,
+#addProjectBtn:hover {
+  background-color: #db4c3f;
+  color: white;
+}
+
+#doForm {
+  width: auto;
+}
+
+.displayed {
+  font-weight: bold;
+}
+
+.showdivs {
+  width: 50%;
+}
+
+li.selected {
+  background-color: #db4c3f;
+}
